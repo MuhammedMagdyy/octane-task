@@ -1,7 +1,10 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { AuthModule } from './auth/auth.module';
 import { CommonModule } from './common/common.module';
+import { User } from './users/entities/user.entity';
+import { UsersModule } from './users/users.module';
 
 @Module({
   imports: [
@@ -16,14 +19,14 @@ import { CommonModule } from './common/common.module';
           port: config.get<number>('POSTGRES_PORT'),
           host: config.get<string>('POSTGRES_HOST'),
           synchronize: config.get<string>('NODE_ENV') !== 'production',
-          entities: [],
+          entities: [User],
         };
       },
     }),
     ConfigModule.forRoot({ isGlobal: true }),
     CommonModule,
+    UsersModule,
+    AuthModule,
   ],
-  controllers: [],
-  providers: [],
 })
 export class AppModule {}
