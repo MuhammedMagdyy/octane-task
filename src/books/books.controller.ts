@@ -8,6 +8,7 @@ import {
   Post,
   UseGuards,
 } from '@nestjs/common';
+import { ApiSecurity } from '@nestjs/swagger';
 import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
 import { RolesGuard } from 'src/auth/guards/roles.guard';
 import { Roles } from 'src/users/decorators/user-role.decorator';
@@ -18,6 +19,7 @@ import { UpdateBookDto } from './dto/update-book.dto';
 
 @Roles(UserType.ADMIN)
 @UseGuards(JwtAuthGuard, RolesGuard)
+@ApiSecurity('bearer')
 @Controller('books')
 export class BooksController {
   constructor(private readonly booksService: BooksService) {}

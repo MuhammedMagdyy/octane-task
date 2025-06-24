@@ -1,4 +1,5 @@
 import { Controller, Get, UseGuards } from '@nestjs/common';
+import { ApiSecurity } from '@nestjs/swagger';
 import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
 import { Roles } from 'src/users/decorators/user-role.decorator';
 import { UserType } from 'src/users/enums/user-type.enum';
@@ -6,6 +7,7 @@ import { RecommendationsService } from './recommendations.service';
 
 @Roles(UserType.USER)
 @UseGuards(JwtAuthGuard)
+@ApiSecurity('bearer')
 @Controller('recommendations')
 export class RecommendationsController {
   constructor(

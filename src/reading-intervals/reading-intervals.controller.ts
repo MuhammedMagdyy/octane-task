@@ -1,4 +1,5 @@
 import { Body, Controller, Post, UseGuards } from '@nestjs/common';
+import { ApiSecurity, ApiTags } from '@nestjs/swagger';
 import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
 import { CurrentUser } from 'src/users/decorators/current-user.decorator';
 import { Roles } from 'src/users/decorators/user-role.decorator';
@@ -9,6 +10,8 @@ import { ReadingIntervalsService } from './reading-intervals.service';
 
 @Roles(UserType.USER)
 @UseGuards(JwtAuthGuard)
+@ApiTags('Reading Intervals')
+@ApiSecurity('bearer')
 @Controller('reading-intervals')
 export class ReadingIntervalsController {
   constructor(
