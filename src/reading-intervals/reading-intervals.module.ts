@@ -14,5 +14,6 @@ import { ReadingIntervalsService } from './reading-intervals.service';
   ],
   providers: [ReadingIntervalsService],
   controllers: [ReadingIntervalsController],
+  exports: [ReadingIntervalsService],
 })
 export class ReadingIntervalsModule {}

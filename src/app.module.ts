@@ -7,6 +7,7 @@ import { Book } from './books/entities/book.entity';
 import { CommonModule } from './common/common.module';
 import { ReadingInterval } from './reading-intervals/entities/reading-intervals.entity';
 import { ReadingIntervalsModule } from './reading-intervals/reading-intervals.module';
+import { RecommendationsModule } from './recommendations/recommendations.module';
 import { User } from './users/entities/user.entity';
 import { UsersModule } from './users/users.module';
 
@@ -33,6 +34,7 @@ import { UsersModule } from './users/users.module';
     AuthModule,
     BooksModule,
     ReadingIntervalsModule,
+    RecommendationsModule,
   ],
 })
 export class AppModule {}

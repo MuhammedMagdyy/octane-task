@@ -41,4 +41,8 @@ export class ReadingIntervalsService {
 
     return this.readIntervalsRepository.save(interval);
   }
+
+  async findAll() {
+    return this.readIntervalsRepository.find({ relations: ['book'] });
+  }
 }
