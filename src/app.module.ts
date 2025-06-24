@@ -5,6 +5,8 @@ import { AuthModule } from './auth/auth.module';
 import { BooksModule } from './books/books.module';
 import { Book } from './books/entities/book.entity';
 import { CommonModule } from './common/common.module';
+import { ReadingInterval } from './reading-intervals/entities/reading-intervals.entity';
+import { ReadingIntervalsModule } from './reading-intervals/reading-intervals.module';
 import { User } from './users/entities/user.entity';
 import { UsersModule } from './users/users.module';
 
@@ -21,7 +23,7 @@ import { UsersModule } from './users/users.module';
           port: config.get<number>('POSTGRES_PORT'),
           host: config.get<string>('POSTGRES_HOST'),
           synchronize: config.get<string>('NODE_ENV') !== 'production',
-          entities: [User, Book],
+          entities: [User, Book, ReadingInterval],
         };
       },
     }),
@@ -30,6 +32,7 @@ import { UsersModule } from './users/users.module';
     UsersModule,
     AuthModule,
     BooksModule,
+    ReadingIntervalsModule,
   ],
 })
 export class AppModule {}
