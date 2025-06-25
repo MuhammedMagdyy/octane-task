@@ -17,6 +17,8 @@ async function bootstrap() {
   const port = configService.get<number>('PORT') ?? 3000;
   const apiPrefix = configService.get<string>('API_PREFIX') ?? 'api';
 
+  app.useLogger(logger);
+
   app.setGlobalPrefix(apiPrefix);
 
   app.use(helmet());
