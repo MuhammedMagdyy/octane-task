@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { User } from './entities/user.entity';
+import { UserType } from './enums/user-type.enum';
 
 @Injectable()
 export class UsersService {
@@ -16,5 +17,9 @@ export class UsersService {
 
   async findOneByUUID(uuid: string): Promise<User | null> {
     return this.userRepository.findOne({ where: { uuid } });
+  }
+
+  async calculateAdminCount(): Promise<number> {
+    return this.userRepository.count({ where: { userType: UserType.ADMIN } });
   }
 }
