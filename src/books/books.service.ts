@@ -36,26 +36,26 @@ export class BooksService {
     return { data, total, page, limit, totalPages };
   }
 
-  async findOneByUUID(uuid: string): Promise<Book | null> {
-    return this.bookRepository.findOne({
+  async findOneByUUID(uuid: string): Promise<Book> {
+    const book = await this.bookRepository.findOne({
       where: [{ uuid, deletedAt: IsNull() }],
     });
-  }
 
-  async update(uuid: string, updateBookDto: UpdateBookDto) {
-    const book = await this.findOneByUUID(uuid);
     if (!book) {
       throw new NotFoundException('Book not found');
     }
+
+    return book;
+  }
+
+  async update(uuid: string, updateBookDto: UpdateBookDto) {
+    await this.findOneByUUID(uuid);
     await this.bookRepository.update(uuid, updateBookDto);
     return { message: 'Book updated successfully' };
   }
 
   async remove(uuid: string) {
-    const book = await this.findOneByUUID(uuid);
-    if (!book) {
-      throw new NotFoundException('Book not found');
-    }
+    await this.findOneByUUID(uuid);
     await this.bookRepository.update(uuid, { deletedAt: new Date() });
     return { message: 'Book deleted successfully' };
   }

@@ -1,8 +1,4 @@
-import {
-  BadRequestException,
-  Injectable,
-  NotFoundException,
-} from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { BooksService } from 'src/books/books.service';
 import { Repository } from 'typeorm';
@@ -23,10 +19,6 @@ export class ReadingIntervalsService {
     }
 
     const book = await this.bookService.findOneByUUID(dto.bookUUID);
-
-    if (!book) {
-      throw new NotFoundException('Book not found');
-    }
 
     if (dto.endPage > book.numberOfPages) {
       throw new BadRequestException('End page exceeds book page count');
