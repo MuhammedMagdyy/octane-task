@@ -9,13 +9,16 @@ import { APP_GUARD } from '@nestjs/core';
 import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthModule } from './auth/auth.module';
+import { BookStatsModule } from './book-stats/book-stats.module';
+import { BookStats } from './book-stats/entities/book-stats.entity';
 import { BooksModule } from './books/books.module';
 import { Book } from './books/entities/book.entity';
 import { CommonModule } from './common/common.module';
 import { LoggerMiddleware } from './common/middlewares/logger.middleware';
+import { DistinctIntervalsModule } from './distinct-intervals/distinct-intervals.module';
+import { DistinctInterval } from './distinct-intervals/entities/distinct-intervals.entity';
 import { ReadingInterval } from './reading-intervals/entities/reading-intervals.entity';
 import { ReadingIntervalsModule } from './reading-intervals/reading-intervals.module';
-import { RecommendationsModule } from './recommendations/recommendations.module';
 import { SeedersModule } from './seeders/seeders.module';
 import { User } from './users/entities/user.entity';
 import { UsersModule } from './users/users.module';
@@ -33,7 +36,7 @@ import { UsersModule } from './users/users.module';
           port: config.get<number>('POSTGRES_PORT'),
           host: config.get<string>('POSTGRES_HOST'),
           synchronize: config.get<string>('NODE_ENV') !== 'production',
-          entities: [User, Book, ReadingInterval],
+          entities: [User, Book, ReadingInterval, DistinctInterval, BookStats],
         };
       },
     }),
@@ -44,8 +47,9 @@ import { UsersModule } from './users/users.module';
     AuthModule,
     BooksModule,
     ReadingIntervalsModule,
-    RecommendationsModule,
     SeedersModule,
+    DistinctIntervalsModule,
+    BookStatsModule,
   ],
   providers: [
     {

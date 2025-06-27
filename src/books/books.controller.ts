@@ -12,6 +12,7 @@ import {
 import { ApiBearerAuth } from '@nestjs/swagger';
 import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
 import { RolesGuard } from 'src/auth/guards/roles.guard';
+import { BookStatsService } from 'src/book-stats/book-stats.service';
 import { PaginationDto } from 'src/common/dto/pagination.dto';
 import { Roles } from 'src/users/decorators/user-role.decorator';
 import { UserType } from 'src/users/enums/user-type.enum';
@@ -24,7 +25,10 @@ import { UpdateBookDto } from './dto/update-book.dto';
 @ApiBearerAuth('access-token')
 @Controller('books')
 export class BooksController {
-  constructor(private readonly booksService: BooksService) {}
+  constructor(
+    private readonly booksService: BooksService,
+    private readonly bookStatsService: BookStatsService,
+  ) {}
 
   @Post()
   async create(@Body() createBookDto: CreateBookDto) {
@@ -35,6 +39,12 @@ export class BooksController {
   @Get()
   async findAll(@Query() paginationDto: PaginationDto) {
     return this.booksService.findAll(paginationDto);
+  }
+
+  @Roles(UserType.USER)
+  @Get('top')
+  async getTopBooks() {
+    return this.bookStatsService.getTopBooks();
   }
 
   @Roles(UserType.ADMIN, UserType.USER)
