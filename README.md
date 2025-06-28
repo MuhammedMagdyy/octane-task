@@ -1,52 +1,92 @@
-# Reading Recommendation System API
+# 📚 Reading Recommendation System API
 
-![NodeJS](https://img.shields.io/badge/Node.js-6DA55F?logo=node.js&logoColor=white) ![NestJS](https://img.shields.io/badge/NestJS-%23E0234E.svg?logo=nestjs&logoColor=white) ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=fff) ![Docker](https://img.shields.io/badge/Docker-2496ED?logo=docker&logoColor=fff) ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-336791?logo=postgresql&logoColor=fff) ![TypeORM](https://img.shields.io/badge/TypeORM-2D3748?logo=typeorm&logoColor=white) ![Postman](https://img.shields.io/badge/Postman-FF6C37?logo=postman&logoColor=white)
+![NodeJS](https://img.shields.io/badge/Node.js-6DA55F?logo=node.js&logoColor=white)
+![NestJS](https://img.shields.io/badge/NestJS-%23E0234E.svg?logo=nestjs&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=fff)
+![Docker](https://img.shields.io/badge/Docker-2496ED?logo=docker&logoColor=fff)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-336791?logo=postgresql&logoColor=fff)
+![TypeORM](https://img.shields.io/badge/TypeORM-2D3748?logo=typeorm&logoColor=white)
+![Postman](https://img.shields.io/badge/Postman-FF6C37?logo=postman&logoColor=white)
 
 ---
 
-The Reading Recommendation System API was built using **Node.js**, **NestJS**, **TypeScript**, **PostgreSQL**, and **TypeORM**. It provides a simple and efficient way for users to submit their reading intervals and get recommendations for the top-rated books in the system. The API implements role-based authorization, logging, and exception handling, and unit tests to ensure secure, reliable, and maintainable code.
+The **Reading Recommendation System API** is built with **Node.js**, **NestJS**, **TypeScript**, **PostgreSQL**, and **TypeORM**. It enables users to submit their reading intervals and receive recommendations for top-rated books.
+
+The API implements:
+
+- ✅ **Role-based authorization** (RBAC) with JWT.
+- ✅ Logging and global exception handling.
+- ✅ Unit testing for reliability and maintainability.
 
 ---
 
-## 📚 Table of Contents
+## 📑 Table of Contents
 
-- [🌟 Features](#-features)
+- [✨ Features](#-features)
 - [📖 API Documentation](#-api-documentation)
 - [📚 Swagger](#-swagger)
-- [🗄️ Database Schema](#️-database-schema)
-- [🛠️ Getting Started](#️-getting-started)
+- [🗄️ Database](#️-database)
+  - [📌 Tables Overview](#-tables-overview)
+  - [📌 Schema](#-schema)
+  - [📌 Flowchart](#-flowchart)
+- [⚙️ Getting Started](#️-getting-started)
   - [🐳 Docker Setup](#-docker-setup)
 
 ---
 
-## 🌟 Features
+## ✨ Features
 
-- 🔒 **Authentication & Authorization**: with JWT - RBAC.
-- ✅ **CRUD Operations**: for books (only admins).
-- 📊 **Reading Intervals**: Users can submit their reading intervals.
-- 📈 **Recommendations**: Get top-rated books based on reading intervals.
+- 🔐 **Authentication & Authorization**: JWT-based with Role-Based Access Control.
+- 📚 **CRUD Operations**: Full book management (admin only).
+- 📊 **Reading Intervals Tracking**: Users can log their reading activity.
+- 📈 **Recommendations**: Retrieve top-rated books based on reading behavior.
 
 ---
 
 ## 📖 API Documentation
 
+Explore the full API using the interactive **Swagger UI**.
+
 ### 📚 Swagger
 
-[Swagger](https://swagger.io/) UI is available at `/api-docs` to explore the API endpoints
+Access Swagger UI at: [`/api-docs`](http://localhost:3000/api-docs)  
+[Swagger](https://swagger.io/) provides complete details of all endpoints, request/response structures, and available operations.
 
 ---
 
-## 🗄️ Database Schema
-![schema](https://github.com/user-attachments/assets/6fe519e3-b60f-4f12-8ebd-1ce44911c591)
+## 🗄️ Database
+
+### 📌 Tables Overview
+
+- 👤 **Users Table**: Stores user data and handles authentication/authorization.
+- 📘 **Books Table**: Stores book details and supports CRUD operations (admin only).
+- 📏 **Reading Intervals Table**: Logs each user's reading sessions.
+- 🔢 **Distinct Intervals Table**: Optimizes operations by storing unique intervals.
+- 📊 **Book Stats Table**: Supports analytics and top-books recommendations.
+
 ---
 
-## 🛠️ Getting Started
+### 📌 Schema
+
+![Database Schema](https://github.com/user-attachments/assets/8cabaf7c-f94e-4457-a063-978dc95ac642)
+
+---
+
+### 📌 Flowchart
+
+![flowchart](https://github.com/user-attachments/assets/351cb385-a011-4d37-b8b6-bb180a1e1a27)
+
+---
+
+## ⚙️ Getting Started
 
 ### 🐳 Docker Setup
 
-The easiest way to get the application up and running is using Docker Compose, which will automatically set up both the API server and PostgreSQL database.
+The easiest way to run the application is with **Docker Compose**, which sets up the API server and the PostgreSQL database automatically.
 
-### Quick Start with Docker
+---
+
+### 🚀 Quick Start with Docker
 
 1. **Clone the repository**
 
@@ -67,7 +107,7 @@ The easiest way to get the application up and running is using Docker Compose, w
    docker-compose up --build
    ```
 
-### Docker Commands
+### Docker Commands for Reference
 
 ```bash
 # Start the application in detached mode
