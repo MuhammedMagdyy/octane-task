@@ -16,8 +16,10 @@ The API implements:
 
 - ✅ **Role-based authorization** (RBAC) with JWT.
 - ✅ Logging and global exception handling.
-- ✅ Rate limiting to prevent abuse.
-- ✅ Unit testing for reliability and maintainability.
+- ✅ Pagination for listing books.
+- ✅ Seeding admin configurations if the system doesn't have.
+- ✅ Rate limiting to prevent abuse & Helmet for setting HTTP security headers.
+- ✅ Book service unit testing for maintainability.
 
 ---
 
