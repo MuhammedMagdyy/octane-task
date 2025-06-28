@@ -16,6 +16,7 @@ The API implements:
 
 - ✅ **Role-based authorization** (RBAC) with JWT.
 - ✅ Logging and global exception handling.
+- ✅ Rate limiting to prevent abuse.
 - ✅ Unit testing for reliability and maintainability.
 
 ---
@@ -29,7 +30,7 @@ The API implements:
   - [📌 Tables Overview](#-tables-overview)
   - [📌 Schema](#-schema)
   - [📌 Flowchart](#-flowchart)
-- [⚙️ Getting Started](#️-getting-started)
+- [⚙️ Installation & Getting Started](#️-installation-getting-started)
   - [🐳 Docker Setup](#-docker-setup)
 
 ---
@@ -78,7 +79,10 @@ Access Swagger UI at: [`/api-docs`](http://localhost:3000/api-docs)
 
 ---
 
-## ⚙️ Getting Started
+## ⚙️ Installation & Getting Started
+
+## Prerequisites
+- ✅ Docker & Docker Compose installed.
 
 ### 🐳 Docker Setup
 
