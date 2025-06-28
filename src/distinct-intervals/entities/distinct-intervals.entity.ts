@@ -12,6 +12,6 @@ export class DistinctInterval extends BaseEntity {
   endPage: number;
 
   @ManyToOne(() => Book)
-  @JoinColumn({ name: 'book_uuid' })
+  @JoinColumn({ name: 'book_id' })
   book: Book;
 }

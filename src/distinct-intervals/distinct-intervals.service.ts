@@ -15,7 +15,7 @@ export class DistinctIntervalsService {
     return this.distinctIntervalsRepository.create({
       startPage: dto.startPage,
       endPage: dto.endPage,
-      book: { uuid: dto.bookUUID },
+      book: { id: dto.bookId },
     });
   }
 }

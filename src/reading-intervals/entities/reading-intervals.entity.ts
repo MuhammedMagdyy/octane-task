@@ -12,10 +12,10 @@ export class ReadingInterval extends BaseEntity {
   endPage: number;
 
   @ManyToOne(() => User)
-  @JoinColumn({ name: 'user_uuid' })
+  @JoinColumn({ name: 'user_id' })
   user: User;
 
   @ManyToOne(() => Book)
-  @JoinColumn({ name: 'book_uuid' })
+  @JoinColumn({ name: 'book_id' })
   book: Book;
 }

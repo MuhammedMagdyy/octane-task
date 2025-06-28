@@ -4,6 +4,7 @@ import {
   Delete,
   Get,
   Param,
+  ParseIntPipe,
   Patch,
   Post,
   Query,
@@ -48,21 +49,21 @@ export class BooksController {
   }
 
   @Roles(UserType.ADMIN, UserType.USER)
-  @Get(':uuid')
-  async findOneByUUID(@Param('uuid') uuid: string) {
-    return this.booksService.findOneByUUID(uuid);
+  @Get(':id')
+  async findOneById(@Param('id', ParseIntPipe) id: number) {
+    return this.booksService.findOneById(id);
   }
 
-  @Patch(':uuid')
+  @Patch(':id')
   async update(
-    @Param('uuid') uuid: string,
+    @Param('id', ParseIntPipe) id: number,
     @Body() updateBookDto: UpdateBookDto,
   ) {
-    return this.booksService.update(uuid, updateBookDto);
+    return this.booksService.update(id, updateBookDto);
   }
 
-  @Delete(':uuid')
-  async remove(@Param('uuid') uuid: string) {
-    return this.booksService.remove(uuid);
+  @Delete(':id')
+  async remove(@Param('id', ParseIntPipe) id: number) {
+    return this.booksService.remove(id);
   }
 }

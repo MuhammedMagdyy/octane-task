@@ -17,7 +17,7 @@ export class BookStatsService {
       relations: ['book'],
       select: {
         book: { title: true, numberOfPages: true },
-        book_uuid: true,
+        bookId: true,
         numberOfReadPages: true,
       },
     });
@@ -25,7 +25,7 @@ export class BookStatsService {
     return {
       message: 'Top 5 books',
       data: data.map((item) => ({
-        bookUUID: item.book_uuid,
+        bookId: item.bookId,
         title: item.book.title,
         numberOfPages: item.book.numberOfPages,
         numberOfReadPages: item.numberOfReadPages,

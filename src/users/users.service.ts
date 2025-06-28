@@ -15,8 +15,8 @@ export class UsersService {
     return this.userRepository.findOne({ where: { email } });
   }
 
-  async findOneByUUID(uuid: string): Promise<User | null> {
-    return this.userRepository.findOne({ where: { uuid } });
+  async findOneById(id: number): Promise<User | null> {
+    return this.userRepository.findOne({ where: { id } });
   }
 
   async calculateAdminCount(): Promise<number> {

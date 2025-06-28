@@ -30,8 +30,8 @@ export class RolesGuard implements CanActivate {
     }
 
     const request = context.switchToHttp().getRequest<IRequest>();
-    const { uuid } = request.user;
-    const user = await this.userService.findOneByUUID(uuid);
+    const { id } = request.user;
+    const user = await this.userService.findOneById(id);
 
     if (!user || !roles.includes(user.userType)) {
       throw new ForbiddenException(

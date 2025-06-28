@@ -45,11 +45,11 @@ export class AuthService {
       message: 'User registered successfully',
       data: {
         user: {
-          uuid: user.uuid,
+          id: user.id,
           email: user.email,
           name: user.name,
         },
-        token: this.generateJwtToken({ uuid: user.uuid }),
+        token: this.generateJwtToken({ id: user.id }),
       },
     };
   }
@@ -70,11 +70,11 @@ export class AuthService {
       message: 'User Logged in successfully',
       data: {
         user: {
-          uuid: user.uuid,
+          id: user.id,
           email: user.email,
           name: user.name,
         },
-        token: this.generateJwtToken({ uuid: user.uuid }),
+        token: this.generateJwtToken({ id: user.id }),
       },
     };
   }

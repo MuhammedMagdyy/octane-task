@@ -23,6 +23,6 @@ export class ReadingIntervalsController {
     @CurrentUser() payload: JwtPayload,
     @Body() dto: CreateIntervalDto,
   ) {
-    return this.readingIntervalsService.create(dto, payload.uuid);
+    return this.readingIntervalsService.create(dto, payload.id);
   }
 }

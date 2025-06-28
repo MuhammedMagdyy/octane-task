@@ -7,8 +7,8 @@ import {
 import { CURRENT_TIMESTAMP } from '../utils/constants';
 
 export abstract class BaseEntity {
-  @PrimaryGeneratedColumn('uuid')
-  uuid: string;
+  @PrimaryGeneratedColumn('increment')
+  id: number;
 
   @CreateDateColumn({
     name: 'created_at',

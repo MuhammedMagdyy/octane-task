@@ -3,11 +3,11 @@ import { Column, Entity, JoinColumn, OneToOne, PrimaryColumn } from 'typeorm';
 
 @Entity('book_stats')
 export class BookStats {
-  @PrimaryColumn('uuid')
-  book_uuid: string;
+  @PrimaryColumn({ name: 'book_id', type: 'integer' })
+  bookId: number;
 
   @OneToOne(() => Book, (book) => book.bookStats)
-  @JoinColumn({ name: 'book_uuid' })
+  @JoinColumn({ name: 'book_id' })
   book: Book;
 
   @Column({ name: 'number_of_read_pages', default: 0 })

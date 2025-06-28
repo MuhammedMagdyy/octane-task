@@ -25,12 +25,12 @@ export class ReadingIntervalsService {
     private readonly dataSource: DataSource,
   ) {}
 
-  async create(dto: CreateIntervalDto, userUUID: string) {
+  async create(dto: CreateIntervalDto, userId: number) {
     if (dto.startPage >= dto.endPage) {
       throw new BadRequestException('Start page must be before end page');
     }
 
-    const book = await this.bookService.findOneByUUID(dto.bookUUID);
+    const book = await this.bookService.findOneById(dto.bookId);
 
     if (dto.endPage > book.numberOfPages) {
       throw new BadRequestException('End page exceeds book page count');
@@ -38,8 +38,8 @@ export class ReadingIntervalsService {
 
     await this.dataSource.transaction(async (manager) => {
       const interval = this.readIntervalsRepository.create({
-        user: { uuid: userUUID },
-        book: { uuid: book.uuid },
+        user: { id: userId },
+        book: { id: book.id },
         startPage: dto.startPage,
         endPage: dto.endPage,
       });
@@ -47,7 +47,7 @@ export class ReadingIntervalsService {
 
       const overlapping = await manager.find(DistinctInterval, {
         where: {
-          book: { uuid: book.uuid },
+          book: { id: book.id },
           startPage: LessThanOrEqual(dto.endPage + 1),
           endPage: MoreThanOrEqual(dto.startPage - 1),
         },
@@ -57,7 +57,7 @@ export class ReadingIntervalsService {
       let newStartPage = dto.startPage;
       let newEndPage = dto.endPage;
 
-      const overlappingIds = overlapping.map((i) => i.uuid);
+      const overlappingIds = overlapping.map((i) => i.id);
 
       for (const currentInterval of overlapping) {
         newStartPage = Math.min(newStartPage, currentInterval.startPage);
@@ -71,12 +71,12 @@ export class ReadingIntervalsService {
       const newInterval = this.distinctIntervalsService.create({
         startPage: newStartPage,
         endPage: newEndPage,
-        bookUUID: book.uuid,
+        bookId: book.id,
       });
       await manager.save(newInterval);
 
       const allDistinct = await manager.find(DistinctInterval, {
-        where: { book: { uuid: book.uuid } },
+        where: { book: { id: book.id } },
       });
 
       const uniquePages = allDistinct.reduce(
@@ -86,7 +86,7 @@ export class ReadingIntervalsService {
 
       await manager.save(
         this.bookStatsRepository.create({
-          book_uuid: book.uuid,
+          bookId: book.id,
           numberOfReadPages: uniquePages,
         }),
       );

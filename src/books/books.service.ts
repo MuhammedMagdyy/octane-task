@@ -36,9 +36,9 @@ export class BooksService {
     return { data, total, page, limit, totalPages };
   }
 
-  async findOneByUUID(uuid: string): Promise<Book> {
+  async findOneById(id: number): Promise<Book> {
     const book = await this.bookRepository.findOne({
-      where: [{ uuid, deletedAt: IsNull() }],
+      where: [{ id, deletedAt: IsNull() }],
     });
 
     if (!book) {
@@ -48,15 +48,15 @@ export class BooksService {
     return book;
   }
 
-  async update(uuid: string, updateBookDto: UpdateBookDto) {
-    await this.findOneByUUID(uuid);
-    await this.bookRepository.update(uuid, updateBookDto);
+  async update(id: number, updateBookDto: UpdateBookDto) {
+    await this.findOneById(id);
+    await this.bookRepository.update(id, updateBookDto);
     return { message: 'Book updated successfully' };
   }
 
-  async remove(uuid: string) {
-    await this.findOneByUUID(uuid);
-    await this.bookRepository.update(uuid, { deletedAt: new Date() });
+  async remove(id: number) {
+    await this.findOneById(id);
+    await this.bookRepository.update(id, { deletedAt: new Date() });
     return { message: 'Book deleted successfully' };
   }
 }
