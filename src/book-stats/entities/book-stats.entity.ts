@@ -1,5 +1,5 @@
-import { Book } from 'src/books/entities/book.entity';
 import { Column, Entity, JoinColumn, OneToOne, PrimaryColumn } from 'typeorm';
+import { Book } from '../../books/entities/book.entity';
 
 @Entity('book_stats')
 export class BookStats {

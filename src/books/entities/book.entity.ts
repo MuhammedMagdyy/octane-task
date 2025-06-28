@@ -1,5 +1,5 @@
-import { BookStats } from 'src/book-stats/entities/book-stats.entity';
 import { Column, Entity, OneToOne } from 'typeorm';
+import { BookStats } from '../../book-stats/entities/book-stats.entity';
 import { BaseEntity } from '../../common/entities/base.entity';
 
 @Entity('books')
